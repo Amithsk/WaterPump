@@ -28,7 +28,7 @@ tdelta = tdelta.total_seconds()
 
 while True:
   sleep(tdelta)
-  startTime = datetime.now().strftime('%H;%M:%S')
+  startTime = datetime.now().strftime('%H:%M:%S')
   print('Waking up',startTime)
   GPIO.output(2,GPIO.HIGH)
   sleep(30)
