@@ -4,7 +4,7 @@
 #Calculate difference between User input time and Sys time
 #Sleep the program
 #Wake up after the sleep duration 
-#light up the LED in specific pattern
+#light up the LED in specific pattern's
 
 from time import strftime,localtime,sleep
 from datetime  import datetime
