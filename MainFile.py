@@ -16,8 +16,8 @@ GPIO.setup(2,GPIO.OUT)
 #Time format
 FMT = '%H:%M:%S'
 
-alaramTime = input("Please enter the alarm time")
-print("Entered value is",alaramTime)
+alarmTime = input("Please enter the alarm time")
+print("Entered value is",alarmTime)
 
 sysTime=datetime.now().strftime('%H:%M:%S')
 print('Systime',sysTime)
