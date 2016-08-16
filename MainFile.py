@@ -7,7 +7,7 @@
 
 from time import strftime,localtime,sleep
 from datetime import datetime
-import RPI.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 #Configure Relay
 GPIO.setmode(GPIO.BCM)
