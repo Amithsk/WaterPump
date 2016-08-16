@@ -35,6 +35,6 @@ while True:
   GPIO.output(2,GPIO.LOW)
   GPIO.cleanup()
   endTime=datetime.now().strftime('%H:%M:%S')
-  tdelta=datetime.strptime(endTime,FMT)-datetime.strptime(startTime,FMT))
+  tdelta=datetime.strptime(endTime,FMT)-datetime.strptime(startTime,FMT)
   tdelta = 300-(tdelta.total_seconds())
 
