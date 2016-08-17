@@ -9,9 +9,19 @@ from time import strftime,localtime,sleep
 from datetime import datetime
 import RPi.GPIO as GPIO
 
-#Configure Relay
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(2,GPIO.OUT)
+def relayControl():
+  GPIO.setmode(GPIO.BCM)
+  GPIO.setup(2,GPIO.OUT)
+  GPIO.output(2,GPIO.HIGH)
+  sleep(30)
+  GPIO.output(2,GPIO.LOW)
+  sleep(5)
+  GPIO.cleanup()
+ 
+def diffTimeCalc(start,end):
+  diff = datetime.strptime(start,FMT)-datetime.strptime(end,FMT)
+  return diff  
+   
 
 #Time format
 FMT = '%H:%M:%S'
@@ -23,18 +33,15 @@ sysTime=datetime.now().strftime('%H:%M:%S')
 print('Systime',sysTime)
 
 #Calculate the difference
-tdelta = datetime.strptime(alarmTime,FMT)-datetime.strptime(sysTime,FMT)
+tdelta = diffTimeCalc(alarmTime,sysTime)
 tdelta = tdelta.total_seconds()
 
 while True:
   sleep(tdelta)
   startTime = datetime.now().strftime('%H:%M:%S')
   print('Waking up',startTime)
-  GPIO.output(2,GPIO.HIGH)
-  sleep(30)
-  GPIO.output(2,GPIO.LOW)
-  GPIO.cleanup()
+  relayControl()
   endTime=datetime.now().strftime('%H:%M:%S')
-  tdelta=datetime.strptime(endTime,FMT)-datetime.strptime(startTime,FMT)
+  tdelta= diffTimeCalc(startTime,endTime)
   tdelta = 300-(tdelta.total_seconds())
 
