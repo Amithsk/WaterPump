@@ -33,8 +33,12 @@ while True:
   sleep(tdelta)
   startTime = datetime.now().strftime('%H:%M:%S')
   print('Waking up',startTime)
-  waterLevel()
-  relayTrigger()
+  Indicator =waterLevel()
+  if Indicator:
+    relayTrigger()
+  else:
+    print "Water level danger break"
+    break
   endTime=datetime.now().strftime('%H:%M:%S')
   tdelta= diffTimeCalc(startTime,endTime)
   tdelta = 300-(tdelta.total_seconds())
