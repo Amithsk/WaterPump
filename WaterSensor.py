@@ -1,10 +1,16 @@
 #Program is used to detect water level
 import RPi.GPIO as GPIO
 import time
+DANGERLIMIT=16
 
 def waterLevel():
   print "Entering waterlevel usecase"
-  waterLevelCheck()
+#Will be used to measure the depth 
+  WATERLEVEL= waterLevelCheck()
+#Will be used check if water level is fine to trigger motor  
+  isSafeToTrigger(WATERLEVEL)
+#Will be used to write the water level information
+  waterLevelWriter(WATERLEVEL)
 
 def waterLevelCheck():
   GPIO.setmode(GPIO.BCM)
@@ -35,7 +41,20 @@ def waterLevelCheck():
 
 #Calculate distance
   pulse_duration = pulse_end - pulse_start
-  distance = pulse_duration*17150
-  distance =round(distance,2)
-  print "The water level is",distance
+  WATERLEVEL = pulse_duration*17150
+  WATERLEVEL =int(round(WATERLEVEL,2))
+  print "The water level is",WATERLEVEL
+  return WATERLEVEL
   GPIO.cleanup()
+
+def isSafeToTrigger(WATERLEVEL):
+  print "Inside isSafeToTrigger usecase"
+  if DANGERLIMIT < WATERLEVEL:
+    return True 
+  else:
+    return False
+    break
+
+def waterLevelWriter(WATERLEVEL):
+   print "To check if the function hit here"
+
