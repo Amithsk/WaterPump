@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 from time import sleep
 
 def relayTrigger():
-   print "Entering relay usecase"
+   print ("Entering relay usecase")
    relayControl()
  
 def relayControl():
