@@ -4,7 +4,7 @@ import time
 DANGERLIMIT=16
 
 def waterLevel():
-  print "Entering waterlevel usecase"
+  print ("Entering waterlevel usecase")
 #Will be used to measure the depth 
   WATERLEVEL= waterLevelCheck()
 #Will be used check if water level is fine to trigger motor  
@@ -41,7 +41,7 @@ def waterLevelCheck():
   pulse_duration = pulse_end - pulse_start
   WATERLEVEL = pulse_duration*17150
   WATERLEVEL =int(round(WATERLEVEL,2))
-  print "The water level is",WATERLEVEL
+  print ("The water level is",WATERLEVEL)
   return WATERLEVEL
   GPIO.cleanup()
 
