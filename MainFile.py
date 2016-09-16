@@ -26,8 +26,7 @@ sysTime=datetime.now().strftime('%H:%M:%S')
 print('Systime',sysTime)
 
 #Calculate the difference
-tdelta = diffTimeCalc(alarmTime,sysTime)
-tdelta = tdelta.total_seconds()
+tdelta =  diffTimeCalc(alarmTime,sysTime).total_seconds()
 
 while True:
   sleep(tdelta)
@@ -40,6 +39,5 @@ while True:
     print "Water level danger break"
     break
   endTime=datetime.now().strftime('%H:%M:%S')
-  tdelta= diffTimeCalc(startTime,endTime)
-  tdelta = 300-(tdelta.total_seconds())
+  tdelta = 300-(diffTimeCalc(alarmTime,sysTime).total_seconds())
 
