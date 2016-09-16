@@ -32,7 +32,7 @@ while True:
   sleep(tdelta)
   startTime = datetime.now().strftime('%H:%M:%S')
   print('Waking up',startTime)
-  Indicator =waterLevel()
+  Indicator,WATERLEVEL =waterLevel()
   if Indicator:
     relayTrigger()
   else:
