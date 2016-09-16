@@ -8,19 +8,17 @@ def waterLevel():
 #Will be used to measure the depth 
   WATERLEVEL= waterLevelCheck()
 #Will be used check if water level is fine to trigger motor  
-  isSafeToTrigger(WATERLEVEL)
-#Will be used to write the water level information
-  waterLevelWriter(WATERLEVEL)
+  return (isSafeToTrigger(WATERLEVEL))
+  
 
 def waterLevelCheck():
   GPIO.setmode(GPIO.BCM)
-  TRIG =23
+  TRIG =24
   ECHO =25
 
   #Init pin
   GPIO.setup(TRIG,GPIO.OUT)
-  GPIO.setup(ECHO,GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
-
+  GPIO.setup(ECHO,GPIO.IN,pull_up_down=GPIO.PUD_UP)
 
   #Trigger the sensor
   GPIO.output(TRIG,False)
@@ -48,13 +46,10 @@ def waterLevelCheck():
   GPIO.cleanup()
 
 def isSafeToTrigger(WATERLEVEL):
-  print "Inside isSafeToTrigger usecase"
-  if DANGERLIMIT < WATERLEVEL:
-    return True 
+  if DANGERLIMIT > WATERLEVEL:
+    return True,WATERLEVEL
   else:
-    return False
-    break
+     return False
+     
 
-def waterLevelWriter(WATERLEVEL):
-   print "To check if the function hit here"
 
