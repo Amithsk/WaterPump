@@ -34,6 +34,7 @@ def userInput():
 
 
 def Main():
+print("Inside the Main function")
 #This loop is to check
 #1/ Is the program restarted after powerfailure
 #2/ Is the program executed for first time
