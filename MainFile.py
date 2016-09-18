@@ -41,6 +41,7 @@ if (isFilePresent()):
   
 else:
   Tdelta,AlarmTime =userInput()
+  createFile():q
   writeFileContent(AlarmTime)
 
 
@@ -60,6 +61,6 @@ while True:
       Tdelta = 300-(diffTimeCalc(StartTime,EndTime).total_seconds())
   except KeyboardInterrupt:
        print "The program interrputed"
-       deleteFileContent()
+       deleteFile()
        break
       
