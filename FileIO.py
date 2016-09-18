@@ -13,8 +13,10 @@ def isFilePresent():
   try:
       if os.path.isfile("AlaramTime.py"):
        print ("The file exist")
+       return True
       else:
        print ("The file doesn't exist")
+       return False
   except:
        print("System error occured during file present check")
        sys.exit(0)
@@ -63,9 +65,3 @@ def deleteFile():
       print("Error occured during file deletion")
       sys.exit(0)
 
-AlarmValue= '09:23:00'
-createFile()
-isFilePresent()
-writeFileContent(AlarmValue)
-readFileContent()
-deleteFile()
