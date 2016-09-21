@@ -11,7 +11,7 @@ from time import sleep
 def isFilePresent():
   print("Inside is file present check")
   try:
-      if os.path.isfile("AlaramTime.py"):
+      if os.path.isfile('/home/pi/Documents/LED/WaterPump/AlaramTime.py'):
        print ("The file exist")
        return True
       else:
@@ -27,7 +27,7 @@ def readFileContent():
   try:
       file =open("AlaramTime.py",'r')
       AlarmValue=file.readline()
-      print("The value of Alaram",AlarmValue)
+      return(AlarmValue)
   except:
       print("System error during file creation")
       sys.exit(0)
@@ -60,7 +60,7 @@ def createFile():
 def deleteFile():
   print("Inside delete file usecase")
   try:
-      os.remove("AlaramTime.py")
+      os.remove('/home/pi/Documents/LED/WaterPump/AlaramTime.py')
   except:
       print("Error occured during file deletion")
       sys.exit(0)
