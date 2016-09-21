@@ -6,7 +6,7 @@
 #Turn off the relay
 
 from time import strftime,localtime,sleep
-from datetime import datetime
+from datetime import datetime,timedelta
 import RPi.GPIO as GPIO
 from WaterSensor import waterLevel
 from Relay import relayTrigger
@@ -18,6 +18,8 @@ FMT = '%H:%M:%S'
  
 def diffTimeCalc(Start,End):
   Diff = datetime.strptime(Start,FMT)-datetime.strptime(End,FMT)
+  if Diff.days < 0:
+    Diff = timedelta(days=0,seconds=Diff.seconds,microseconds=Diff.microseconds)
   return Diff  
 
 def userInput():
@@ -40,8 +42,10 @@ def Main():
   if (FileIO.isFilePresent()):
     print("Inside file true part")
     AlarmTime = FileIO.readFileContent()
+    print("The value of AlarmTime",AlarmTime)
     SysTime=datetime.now().strftime('%H:%M:%S')
     Tdelta =  diffTimeCalc(AlarmTime,SysTime).total_seconds()
+    print("The value of Tdelta",Tdelta)
   
   else:
     print("Inside file false part")
